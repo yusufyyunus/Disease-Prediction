@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Risk Assessment System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
+        <div class="container">
+          <a class="navbar-brand fw-bold" href="index.html">
+            <i class="bi bi-heart-pulse me-2"></i>Health Risk Assessment
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="prediction.html">Assessment</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Results</a>
+              </li> -->
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li> -->
+              <!-- login -->
+              <li class="nav-item">
+                <a class="nav-link" href="faq.html">FAQ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+  <!-- Hero Section -->
+  <div class="bg-primary text-white py-5 shadow-sm">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <h1 class="display-4 fw-bold">Health Risk Assessment</h1>
+          <p class="lead">Predict your risk factors and take proactive steps toward better health</p>
+          <a href="prediction.html" class="btn btn-light btn-lg px-4 mt-3">
+            <i class="bi bi-activity me-2"></i>Start Assessment
+          </a>
+        </div>
+        <div class="col-md-6 text-center">
+          <img src="hero.png" alt="Health Assessment Illustration" class="img-fluid rounded shadow-lg">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">How It Works</h2>
+      <p class="text-muted">Our advanced system predicts potential health risks with medical-grade precision</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3" style="width: 90px; height: 90px;">
+              <i class="bi bi-clipboard-data text-primary fs-1"></i>
+            </div>
+            <h4 class="card-title">Complete Assessment</h4>
+            <p class="card-text text-muted">Answer questions about your health metrics, lifestyle, and medical history.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3" style="width: 90px; height: 90px;">
+              <i class="bi bi-graph-up-arrow text-primary fs-1"></i>
+            </div>
+            <h4 class="card-title">Machine Learning Analysis</h4>
+            <p class="card-text text-muted">Our advanced algorithms analyze your data to identify potential risk factors.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3" style="width: 90px; height: 90px;">
+              <i class="bi bi-file-medical text-primary fs-1"></i>
+            </div>
+            <h4 class="card-title">Personalized Results</h4>
+            <p class="card-text text-muted">Receive a detailed report with customized recommendations for better health.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Health Conditions Section -->
+  <div class="bg-light py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">Predictive Health Assessment</h2>
+        <p class="text-muted">Our system evaluates your risk for multiple health conditions</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div class="bg-danger bg-opacity-10 p-2 rounded me-3">
+                  <i class="bi bi-heart-pulse text-danger fs-3"></i>
+                </div>
+                <h4 class="mb-0">Cardiovascular Disease</h4>
+              </div>
+              <p class="text-muted">Heart disease remains the leading cause of death globally. Our assessment analyzes key cardiac indicators to predict your heart health status.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-transparent px-0">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>Blood pressure analysis
+                </li>
+                <li class="list-group-item bg-transparent px-0">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>Cholesterol level evaluation
+                </li>
+                <li class="list-group-item bg-transparent px-0">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>ECG pattern recognition
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center mb-3">
+                <div class="bg-info bg-opacity-10 p-2 rounded me-3">
+                  <i class="bi bi-droplet-half text-info fs-3"></i>
+                </div>
+                <h4 class="mb-0">Diabetes Risk</h4>
+              </div>
+              <p class="text-muted">Diabetes affects millions worldwide, often undiagnosed for years. Our system identifies early warning signs before symptoms appear.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-transparent px-0">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>HbA1c level assessment
+                </li>
+                <li class="list-group-item bg-transparent px-0">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>Glucose variability analysis
+                </li>
+                <li class="list-group-item bg-transparent px-0">
+                  <i class="bi bi-check-circle-fill text-success me-2"></i>BMI and lifestyle impact evaluation
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5">
+        <a href="prediction.html" class="btn btn-primary btn-lg px-5">
+          <i class="bi bi-clipboard-check me-2"></i>Begin Assessment Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">User Experiences</h2>
+      <p class="text-muted">See how our assessment has helped others improve their health</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+            <p class="card-text">"The assessment identified my pre-diabetic condition early. Thanks to the recommendations, I've made lifestyle changes and my blood sugar is now under control."</p>
+            <div class="d-flex align-items-center mt-4">
+              <div class="bg-primary rounded-circle d-flex justify-content-center align-items-center" style="width: 45px; height: 45px;">
+                <span class="text-white fw-bold">JM</span>
+              </div>
+              <div class="ms-3">
+                <h6 class="mb-0">Ali bin Abdullah</h6>
+                <small class="text-muted">Age 42</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+              </div>
+            </div>
+            <p class="card-text">"The cardiovascular risk assessment revealed my hypertension risk before it became serious. My doctor was impressed with the detailed report."</p>
+            <div class="d-flex align-items-center mt-4">
+              <div class="bg-primary rounded-circle d-flex justify-content-center align-items-center" style="width: 45px; height: 45px;">
+                <span class="text-white fw-bold">SR</span>
+              </div>
+              <div class="ms-3">
+                <h6 class="mb-0">Sarah Renue.</h6>
+                <small class="text-muted">Age 58</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between mb-3">
+              <div class="text-warning">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+            <p class="card-text">"As a healthcare professional, I'm impressed with the accuracy of this assessment. The results aligned perfectly with clinical tests for my patients."</p>
+            <div class="d-flex align-items-center mt-4">
+              <div class="bg-primary rounded-circle d-flex justify-content-center align-items-center" style="width: 45px; height: 45px;">
+                <span class="text-white fw-bold">DP</span>
+              </div>
+              <div class="ms-3">
+                <h6 class="mb-0">Ng Keot Liang</h6>
+                <small class="text-muted">Cardiologist</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+<footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h5>Health Risk Assessment</h5>
+          <p class="mb-0">An advanced tool for predicting health risks and improving wellness.</p>
+        </div>
+        <div class="col-md-3">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="text-decoration-none text-white">Home</a></li>
+            <li><a href="prediction.html" class="text-decoration-none text-white">Start Assessment</a></li>
+            <li><a href="#" class="text-decoration-none text-white">About Us</a></li>
+            <li><a href="#" class="text-decoration-none text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5>Contact</h5>
+          <ul class="list-unstyled text-white">
+            <li><i class="bi bi-envelope me-1"></i> support@healthassessment.com</li>
+            <li><i class="bi bi-telephone me-1"></i> +60 123-456789</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="text-center text-muted">
+        <small>&copy; 2025 Health Risk Assessment. All rights reserved.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

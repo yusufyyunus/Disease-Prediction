@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Risk Assessment Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body class="bg-light">
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-heart-pulse me-2"></i>Health Risk Assessment
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="prediction.html">Assessment</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Results</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Progress Bar -->
+  <div class="container mt-4">
+    <div class="progress" style="height: 8px;">
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="progress-bar" role="progressbar" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <!-- Form Container -->
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card border-0 shadow-lg">
+          <div class="card-header bg-white p-4 border-0">
+            <h2 class="text-primary mb-1">Health Risk Assessment</h2>
+            <!-- <p class="text-muted mb-0">Please complete all fields for an accurate prediction</p> -->
+          </div>
+          <div class="card-body p-4">
+            <form id="assessment-form">
+              <!-- Tab Navigation -->
+              <ul class="nav nav-tabs mb-4" id="formTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="demographics-tab" data-bs-toggle="tab" data-bs-target="#demographics" type="button" role="tab">
+                    <i class="bi bi-person me-1"></i>Demographics
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="lifestyle-tab" data-bs-toggle="tab" data-bs-target="#lifestyle" type="button" role="tab">
+                    <i class="bi bi-activity me-1"></i>Lifestyle
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="medical-tab" data-bs-toggle="tab" data-bs-target="#medical" type="button" role="tab">
+                    <i class="bi bi-clipboard2-pulse me-1"></i>Medical History
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="cardiovascular-tab" data-bs-toggle="tab" data-bs-target="#cardiovascular" type="button" role="tab">
+                    <i class="bi bi-heart me-1"></i>Cardiovascular
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="glucose-tab" data-bs-toggle="tab" data-bs-target="#glucose" type="button" role="tab">
+                    <i class="bi bi-droplet me-1"></i>Glucose
+                  </button>
+                </li>
+              </ul>
+
+              <!-- Tab Content -->
+              <div class="tab-content" id="formTabContent">
+                <!-- Demographics Tab -->
+                <div class="tab-pane fade show active" id="demographics" role="tabpanel">
+                  <h4 class="mb-4 text-primary"><i class="bi bi-person-vcard me-2"></i>Personal Information</h4>
+                  <div class="row g-3">
+                    <!-- Name and Email -->
+                    <div class="col-md-6">
+                      <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control form-control-lg" name="name" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                      <input type="email" class="form-control form-control-lg" name="email" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="age" class="form-label">Age Range <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="age" required>
+                        <option value="">Select your age range</option>
+                        <option value="1,Below 19 years">Below 19 years</option>
+                        <option value="2,19 to 35 years">Between 19 to 35 years</option>
+                        <option value="3,36 to 65 years">Between 36 to 65 years</option>
+                        <option value="4,Above 65 years">Above 65 years</option>
+                      </select>
+                      <div class="form-text">Your age helps determine risk factors for various conditions.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="sex" class="form-label">Sex <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="MF" required>
+                        <option value="">Select an option</option>
+                        <option value="1,Male">Male</option>
+                        <option value="0,Female">Female</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="marriage" class="form-label">Marital Status <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="married" required>
+                        <option value="">Select an option</option>
+                        <option value="0,Unmarried">Unmarried</option>
+                        <option value="1,Married">Married</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="residence" class="form-label">Residence Type <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="residence" required>
+                        <option value="">Select an option</option>
+                        <option value="0,Urban">Urban</option>
+                        <option value="1,Rural">Rural</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="work" class="form-label">Work Stress Level <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="work_type" required>
+                        <option value="">Select your work stress level</option>
+                        <option value="0,Very Low-Work Stress">Very Low Stress</option>
+                        <option value="1,Low -Work Stress">Low Stress</option>
+                        <option value="2,Modrated -Work Stress">Moderate Stress</option>
+                        <option value="3,High -Work Stress">High Stress</option>
+                        <option value="4,Very High-Work Stress">Very High Stress</option>
+                      </select>
+                      <div class="form-text">Chronic stress can impact cardiovascular health.</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary" disabled>
+                      <i class="bi bi-arrow-left me-1"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="nextTab('lifestyle-tab')">
+                      Next <i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Lifestyle Tab -->
+                <div class="tab-pane fade" id="lifestyle" role="tabpanel">
+                  <h4 class="mb-4 text-primary"><i class="bi bi-activity me-2"></i>Lifestyle Factors</h4>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="smoking" class="form-label">Current Smoking Status <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="smoking" required>
+                        <option value="">Select an option</option>
+                        <option value="0,Don't Smoke">Do not Smoke</option>
+                        <option value="1,Do Smoke">Do Smoke</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="smoking_history" class="form-label">Smoking History <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="smoking_history" required>
+                        <option value="">Select your smoking history</option>
+                        <option value="0,Non Smoker">Non Smoker</option>
+                        <option value="1,Occasional Smoker">Occasional Smoker</option>
+                        <option value="2,Light Smoker">Light Smoker</option>
+                        <option value="3,Regular Smoker">Regular Smoker</option>
+                        <option value="4,Heavy Smoker">Heavy Smoker</option>
+                      </select>
+                      <div class="form-text">Smoking history is a significant risk factor for many diseases.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="bmi" class="form-label">Body Mass Index (BMI) <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="bmi" required>
+                        <option value="">Select your BMI range</option>
+                        <option value="1, less 18.5-BMI">Under Weight (less than 18.5)</option>
+                        <option value="2,18.5 to 24.9-BMI">Normal Weight (18.5 to 24.9)</option>
+                        <option value="3,25 to 29.9-BMI">Overweight (25 to 29.9)</option>
+                        <option value="4,30.0 or more-BMI">Obese (30 and above)</option>
+                      </select>
+                      <div class="form-text">BMI helps assess your risk for various health conditions.</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary" onclick="nextTab('demographics-tab')">
+                      <i class="bi bi-arrow-left me-1"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="nextTab('medical-tab')">
+                      Next <i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Medical History Tab -->
+                <div class="tab-pane fade" id="medical" role="tabpanel">
+                  <h4 class="mb-4 text-primary"><i class="bi bi-clipboard2-pulse me-2"></i>Medical History</h4>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="hypertension" class="form-label">Hypertension (High Blood Pressure) <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="hyper" required>
+                        <option value="">Have you been diagnosed with hypertension?</option>
+                        <option value="0,No-Hypertension">No</option>
+                        <option value="1,Yes-Hypertension">Yes</option>
+                      </select>
+                      <div class="form-text">Hypertension significantly increases risk for heart disease and stroke.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="heart" class="form-label">Heart Disease <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="heart" required>
+                        <option value="">Have you been diagnosed with heart disease?</option>
+                        <option value="0,No-HeartDisease">No</option>
+                        <option value="1,Yes-HeartDisease">Yes</option>
+                      </select>
+                      <div class="form-text">Previous diagnoses help predict future cardiovascular events.</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary" onclick="nextTab('lifestyle-tab')">
+                      <i class="bi bi-arrow-left me-1"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="nextTab('cardiovascular-tab')">
+                      Next <i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Cardiovascular Tab -->
+                <div class="tab-pane fade" id="cardiovascular" role="tabpanel">
+                  <h4 class="mb-4 text-primary"><i class="bi bi-heart me-2"></i>Cardiovascular Indicators</h4>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="cp" class="form-label">Chest Pain <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="cp" required>
+                        <option value="">Select chest pain severity</option>
+                        <option value="0,No-ChestPain">No Pain</option>
+                        <option value="1,Mild-ChestPain">Mild Pain</option>
+                        <option value="2,Moderate-ChestPain">Moderate Pain</option>
+                        <option value="3,Severe-ChestPain">Severe Pain</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="trestbps" class="form-label">Resting Blood Pressure <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="trestbps" required>
+                        <option value="">Select your resting blood pressure range</option>
+                        <option value="1,Below 120-trestbps">Below 120 mmHg (Normal)</option>
+                        <option value="2,121 to 129-trestbps">121-129 mmHg (Elevated)</option>
+                        <option value="3,130 to 139-trestbps">130-139 mmHg (Stage 1 Hypertension)</option>
+                        <option value="4,Above 139-trestbps">Above 139 mmHg (Stage 2 Hypertension)</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="cholesterol" class="form-label">Cholesterol Level <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="cholesterol" required>
+                        <option value="">Select your total cholesterol level</option>
+                        <option value="1,Below 200-cholesterol">Below 200 mg/dL (Desirable)</option>
+                        <option value="2,201 to 239-cholesterol">201-239 mg/dL (Borderline High)</option>
+                        <option value="3,Above 239-cholesterol">Above 239 mg/dL (High)</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="fbs" class="form-label">Fasting Blood Sugar <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="fbs" required>
+                        <option value="">Select your fasting blood sugar level</option>
+                        <option value="0, Less 100 mg/dL-FBS">Less than 100 mg/dL (Normal)</option>
+                        <option value="1,100 mg/dL-higher-FBS">100 mg/dL or higher (Elevated)</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="restecg" class="form-label">Resting Electrocardiographic Results <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="restecg" required>
+                        <option value="">Select your resting ECG results</option>
+                        <option value="0,Normal-RestECG">Normal</option>
+                        <option value="1,Abnormality-RestECG">Having ST-T Wave Abnormality</option>
+                        <option value="2,Definite Hypertrophy-RestECG">Showing Probable or Definite Left Ventricular Hypertrophy</option>
+                      </select>
+                      <div class="form-text">ECG results help assess electrical activity of your heart.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="thalach" class="form-label">Maximum Heart Rate <span class="text-danger">*</span></label>
+                        <select class="form-select form-select-lg" name="thalach" required>
+                            <option value="">Select your maximum heart rate range</option>
+                            <option value="1,Below 100-Thalach">Below 100</option>
+                            <option value="2,101 to 150-Thalach">Between 101 to 150</option>
+                            <option value="3,Above 150-Thalach">Above 150</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="exang" class="form-label">Exercise-Induced Angina <span class="text-danger">*</span></label>
+                        <select class="form-select form-select-lg" name="exang" required>
+                            <option value="">Have you experienced exercise-induced angina?</option>
+                            <option value="0,Not experienced-Exang">Have NOT experienced</option>
+                            <option value="1,Have experienced-Exang">Have experienced</option>
+                        </select>
+                        <div class="form-text">Angina is chest pain caused by reduced blood flow to the heart.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="oldpeak" class="form-label">ST Depression (Oldpeak) <span class="text-danger">*</span></label>
+                        <select class="form-select form-select-lg" name="oldpeak" required>
+                            <option value="">Select your ST depression level</option>
+                            <option value="1,Below 0.6-Oldpeak">Below 0.6</option>
+                            <option value="2,0.6 to 1.5-Oldpeak">Between 0.6 to 1.5</option>
+                            <option value="3,Above 1.5-Oldpeak">Above 1.5</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="slope" class="form-label">ST Segment Slope <span class="text-danger">*</span></label>
+                        <select class="form-select form-select-lg" name="slope" required>
+                            <option value="">Select your ST segment slope</option>
+                            <option value="0,No Abnormality-Slope">No Abnormality</option>
+                            <option value="1,Moderate Abnormality-Slope">Moderate Abnormality</option>
+                            <option value="2,Severe Abnormality-Slope">Severe Abnormality</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ca" class="form-label">Cardiac Arrhythmia <span class="text-danger">*</span></label>
+                        <select class="form-select form-select-lg" name="ca" required>
+                            <option value="">Select your cardiac arrhythmia status</option>
+                            <option value="0,No-CA">No Arrhythmia</option>
+                            <option value="1,OccasionalprematureBeats-CA">Occasional Premature Beats</option>
+                            <option value="2,Mild-CA">Mild Arrhythmia</option>
+                            <option value="3,Moderate-CA">Moderate Arrhythmia</option>
+                            <option value="4,Severe-CA">Severe Arrhythmia</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="thal" class="form-label">Thalassemia Status <span class="text-danger">*</span></label>
+                        <select class="form-select form-select-lg" name="thal" required>
+                            <option value="">Select your thalassemia status</option>
+                            <option value="0,No-Thalassemia">No Thalassemia</option>
+                            <option value="1,Carrier-Thalassemia">Carrier</option>
+                            <option value="2,Minor-Thalassemia">Thalassemia Minor</option>
+                            <option value="3,Major-Thalassemia">Thalassemia Major</option>
+                        </select>
+                        <div class="form-text">Thalassemia is an inherited blood disorder affecting hemoglobin production.</div>
+                    </div>
+                </div>                              
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary" onclick="nextTab('medical-tab')">
+                        <i class="bi bi-arrow-left me-1"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="nextTab('glucose-tab')">
+                        Next <i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                </div>
+            </div>
+                
+                <!-- Glucose Tab -->
+                <div class="tab-pane fade" id="glucose" role="tabpanel">
+                  <h4 class="mb-4 text-primary"><i class="bi bi-droplet me-2"></i>Glucose & Blood Sugar</h4>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="glucose" class="form-label">Average Blood Sugar <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="glucose" required>
+                        <option value="">Select your average blood sugar level</option>
+                        <option value="1,less 70 mg/dL-AvgSugar">Below 70 mg/dL</option>
+                        <option value="2,70-140 mg/dL-AvgSugar">Between 70 mg/dL and 140 mg/dL</option>
+                        <option value="3,140-more mg/dL-AvgSugar">Above 140 mg/dL</option>
+                      </select>
+                      <div class="form-text">Average blood sugar provides insight into diabetes risk.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="HbA1c_level" class="form-label">Hemoglobin A1C <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-lg" name="HbA1c_level" required>
+                        <option value="">Select your hemoglobin A1C level</option>
+                        <option value="1,less 5.7-HemoglobinA1C">Below 5.7%</option>
+                        <option value="2,5.7 to 6.4-HemoglobinA1C">5.7% to 6.4%</option>
+                        <option value="3,6.4 or more-HemoglobinA1C">6.5% or higher</option>
+                      </select>
+                      <div class="form-text">HbA1c reflects your average blood sugar levels over the past 2-3 months.</div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary" onclick="nextTab('cardiovascular-tab')">
+                      <i class="bi bi-arrow-left me-1"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="submitForm()">
+                      <i class="bi bi-check-circle me-1"></i> Submit Assessment
+                    </button>
+                  </div>
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class="card-footer bg-white p-4 border-0">
+          <div class="text-muted small">
+            <i class="bi bi-shield-lock me-1"></i> Your information is secure and will only be used for health assessment purposes.
+          </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        
+        <!-- JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+          // Tab navigation
+          function nextTab(tabId) {
+            document.getElementById(tabId).click();
+            updateProgressBar();
+          }
+        
+          // Update progress bar
+          function updateProgressBar() {
+            const tabs = ['demographics-tab', 'lifestyle-tab', 'medical-tab', 'cardiovascular-tab', 'glucose-tab'];
+            const activeTab = document.querySelector('.nav-link.active').id;
+            const currentIndex = tabs.indexOf(activeTab);
+            const progressPercentage = (currentIndex / (tabs.length - 1)) * 100;
+            document.getElementById('progress-bar').style.width = progressPercentage + '%';
+          }
+        
+          // Form submission
+          function submitForm() {
+            if (validateForm()) {
+            // Show loading indicator
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.className = 'position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-white bg-opacity-75';
+            loadingIndicator.style.zIndex = '1060';
+            loadingIndicator.innerHTML = `
+                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Loading...</span>
+                </div>
+            `;
+            document.body.appendChild(loadingIndicator);
+            
+            // Get all form data
+            const form = document.getElementById('assessment-form');
+            const formData = new FormData(form);
+
+            // Send data using fetch API
+            fetch('http://localhost:8000/submit-form-assessment/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+              console.log('Success:', data);
+               alert('Your health risk assessment has been submitted successfully!');
+                window.open(`/result.html?id=${data.record_id}`, '_self');
+            })
+            .catch(error => {
+                document.body.removeChild(loadingIndicator);
+                showAlert('Submission failed: ' + error.message, 'danger');
+            });
+            }
+        }
+
+        // Form validation
+        function validateForm() {
+            const form = document.getElementById('assessment-form');
+            const allRequiredFields = form.querySelectorAll('[required]');
+            
+            let isValid = true;
+            allRequiredFields.forEach(field => {
+            if (!field.value) {
+                isValid = false;
+                field.classList.add('is-invalid');
+                
+                // Add error message if not already present
+                if (!field.nextElementSibling || !field.nextElementSibling.classList.contains('invalid-feedback')) {
+                const feedback = document.createElement('div');
+                feedback.classList.add('invalid-feedback');
+                feedback.textContent = 'This field is required';
+                field.parentNode.insertBefore(feedback, field.nextSibling);
+                }
+                
+                // Activate the tab containing the first invalid field
+                const tabPane = field.closest('.tab-pane');
+                const tabId = tabPane.id;
+                document.querySelector(`[data-bs-target="#${tabId}"]`).click();
+                
+                // Scroll to the first invalid field
+                field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return false; // Exit the forEach early
+            }
+            });
+            
+            return isValid;
+        }
+
+        // Show alert message
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-4`;
+            alertDiv.style.zIndex = '1070';
+            alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            
+            // Auto dismiss after 5 seconds
+            setTimeout(() => {
+            alertDiv.classList.remove('show');
+            setTimeout(() => document.body.removeChild(alertDiv), 150);
+            }, 5000);
+        }
+
+        // Initialize progress bar on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgressBar();
+            
+            // Set the form's action attribute
+            document.getElementById('assessment-form').setAttribute('action', '/main.py');
+            document.getElementById('assessment-form').setAttribute('method', 'post');
+        });
+        </script>
+    </body>
+</html>

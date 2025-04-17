@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Health Assessment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar {
+            background-color: #212529;
+            color: white;
+            min-height: calc(100vh - 56px);
+        }
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.75rem 1rem;
+            border-radius: 0.25rem;
+        }
+        .sidebar .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 1);
+        }
+        .sidebar .nav-link.active {
+            background-color: rgba(13, 110, 253, 0.9);
+            color: white;
+        }
+        main {
+            padding: 1.5rem;
+        }
+        .detail-view {
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
+        .assessment-card:hover {
+            cursor: pointer;
+        }
+        .pagination {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-heart-pulse me-2"></i>Admin Dashboard
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle me-1"></i>Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logout-btn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar p-3">
+                <h6 class="text-uppercase text mb-3">Main Menu</h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <i class="bi bi-clipboard-data me-2"></i>Assessments
+                        </a>
+                    </li>
+                    <!-- Send Email Notifications -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="email.html">
+                            <i class="bi bi-envelope me-2"></i>Send Notifications
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <main class="col-md-9 col-lg-10">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4><i class="bi bi-clipboard-data me-2"></i>Assessment Submissions</h4>
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="search-input">
+                            <button class="btn btn-outline-secondary" type="button" id="search-button">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assessment List -->
+                <div class="row">
+                    <div class="col-md-5 col-lg-4">
+                        <div class="card">
+                            <div class="card-header bg-white">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Assessment List</h5>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" id="refresh-btn">
+                                            <i class="bi bi-sort-down"></i> Refresh
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="list-group list-group-flush" id="assessment-list">
+                                    <!-- Assessment items will be loaded here -->
+                                    <div class="d-flex justify-content-center py-4">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white">
+                                <nav>
+                                    <ul class="pagination justify-content-center" id="pagination">
+                                        <!-- Pagination will be loaded here -->
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detail View -->
+                    <div class="col-md-7 col-lg-8">
+                        <div class="card">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0">Assessment Details</h5>
+                            </div>
+                            <div class="card-body" id="assessment-detail">
+                                <div class="text-center py-4 text-muted">
+                                    <i class="bi bi-info-circle fs-1"></i>
+                                    <p class="mt-3">Select an assessment to view details</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Check if user is authenticated
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load assessments
+            loadAssessments();
+            
+            // Logout button event listener
+            document.getElementById('logout-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'login.html';
+            });
+            
+            // Search button event listener
+            document.getElementById('search-button').addEventListener('click', function() {
+                const searchValue = document.getElementById('search-input').value;
+                loadAssessments(searchValue);
+            });
+        });
+        
+        function loadAssessments(searchTerm = '') {
+            const assessmentList = document.getElementById('assessment-list');
+            
+            fetch('http://localhost:8000/assessments/', {
+                method: 'GET',
+            })
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        window.location.href = 'login.html';
+                    }
+                    throw new Error('Failed to load assessments');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Filter by search term if provided
+                let filteredData = data;
+                if (searchTerm) {
+                    searchTerm = searchTerm.toLowerCase();
+                    filteredData = data.filter(item => {
+                        // Search through all properties
+                        return Object.values(item).some(val => 
+                            val && val.toString().toLowerCase().includes(searchTerm)
+                        );
+                    });
+                }
+                
+                displayAssessments(filteredData);
+                setupPagination(filteredData.length);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                assessmentList.innerHTML = `
+                    <div class="text-center py-4 text-danger">
+                        <i class="bi bi-exclamation-triangle fs-1"></i>
+                        <p class="mt-3">Failed to load assessments. Please try again.</p>
+                    </div>
+                `;
+            });
+        }
+        
+        function displayAssessments(assessments) {
+            const assessmentList = document.getElementById('assessment-list');
+            
+            if (assessments.length === 0) {
+                assessmentList.innerHTML = `
+                    <div class="text-center py-4 text-muted">
+                        <i class="bi bi-inbox fs-1"></i>
+                        <p class="mt-3">No assessments found</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            assessments.forEach(assessment => {
+                // name and email
+                let nameText = 'Not specified';
+                if (assessment.name) {
+                    nameText = assessment.name.split(',')[1] || assessment.name;
+                }
+
+                let emailText = 'Not specified';
+                if (assessment.email) {
+                    emailText = assessment.email.split(',')[1] || assessment.email;
+                }
+
+                let ageText = 'Not specified';
+                if (assessment.age) {
+                    ageText = assessment.age.split(',')[1] || assessment.age;
+                }
+                
+                let sexText = 'Not specified';
+                if (assessment.MF) {
+                    sexText = assessment.MF.split(',')[1] || assessment.MF;
+                }
+                
+                html += `
+                <div class="list-group-item list-group-item-action assessment-card" onclick="showAssessmentDetail(${assessment.id})">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="mb-1">Assessment #${assessment.id}</h6>
+                        <small class="text">${new Date(assessment.timestamp).toLocaleString()}</small>
+                    </div>
+                    <div>
+                        <span class="badge bg-dark">Name: ${nameText}</span>
+                        <span class="badge bg-secondary">Email: ${emailText}</span>
+                    </div>
+
+                    <small class="assessment-details">
+                        Click to view details
+                    </small>
+                </div>
+                `;
+            });
+            
+            assessmentList.innerHTML = html;
+        }
+        
+        function setupPagination(totalItems) {
+            const pagination = document.getElementById('pagination');
+            const itemsPerPage = 10;
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            
+            let paginationHtml = '';
+            if (totalPages > 1) {
+                paginationHtml += `
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Previous</a>
+                    </li>
+                `;
+                
+                for (let i = 1; i <= Math.min(totalPages, 5); i++) {
+                    paginationHtml += `
+                        <li class="page-item ${i === 1 ? 'active' : ''}">
+                            <a class="page-link" href="#">${i}</a>
+                        </li>
+                    `;
+                }
+                
+                paginationHtml += `
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                `;
+            }
+            
+            pagination.innerHTML = paginationHtml;
+        }
+        
+        function showAssessmentDetail(id) {
+            const detailDiv = document.getElementById('assessment-detail');
+            
+            // Show loading indicator
+            detailDiv.innerHTML = `
+                <div class="d-flex justify-content-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `;
+            
+            fetch(`http://localhost:8000/assessment/${id}`, {
+                method: 'GET',
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load assessment details');
+                }
+                return response.json();
+            })
+            .then(assessment => {
+                assessment = assessment.record;
+                // Highlight the selected card
+                const cards = document.querySelectorAll('.assessment-card');
+                cards.forEach(card => card.classList.remove('active', 'bg-light'));
+                document.querySelector(`.assessment-card[onclick="showAssessmentDetail(${id})"]`).classList.add('active');
+                
+                // Format the assessment details
+                let detailsHtml = `
+                    <h6 class="border-bottom pb-2 mb-3">Assessment #${assessment.id}</h6>
+                    <p class="text-muted mb-3"><i class="bi bi-calendar-event me-1"></i> ${new Date(assessment.timestamp).toLocaleString()}</p>
+                    
+                    <div class="mb-3">
+                        <h6 class="text-primary"><i class="bi bi-person me-1"></i> Demographics</h6>
+                        <div class="ms-3">
+                            <p class="mb-1"><strong>Age:</strong> ${formatValue(assessment.age)}</p>
+                            <p class="mb-1"><strong>Sex:</strong> ${formatValue(assessment.MF)}</p>
+                            <p class="mb-1"><strong>Marital Status:</strong> ${formatValue(assessment.married)}</p>
+                            <p class="mb-1"><strong>Residence:</strong> ${formatValue(assessment.residence)}</p>
+                            <p class="mb-1"><strong>Work Stress:</strong> ${formatValue(assessment.work_type)}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6 class="text-primary"><i class="bi bi-activity me-1"></i> Lifestyle</h6>
+                        <div class="ms-3">
+                            <p class="mb-1"><strong>Current Smoking:</strong> ${formatValue(assessment.smoking)}</p>
+                            <p class="mb-1"><strong>Smoking History:</strong> ${formatValue(assessment.smoking_history)}</p>
+                            <p class="mb-1"><strong>BMI:</strong> ${formatValue(assessment.bmi)}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6 class="text-primary"><i class="bi bi-clipboard2-pulse me-1"></i> Medical History</h6>
+                        <div class="ms-3">
+                            <p class="mb-1"><strong>Hypertension:</strong> ${formatValue(assessment.hyper)}</p>
+                            <p class="mb-1"><strong>Heart Disease:</strong> ${formatValue(assessment.heart)}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6 class="text-primary"><i class="bi bi-heart me-1"></i> Cardiovascular</h6>
+                        <div class="ms-3">
+                            <p class="mb-1"><strong>Chest Pain:</strong> ${formatValue(assessment.cp)}</p>
+                            <p class="mb-1"><strong>Blood Pressure:</strong> ${formatValue(assessment.trestbps)}</p>
+                            <p class="mb-1"><strong>Cholesterol:</strong> ${formatValue(assessment.cholesterol)}</p>
+                            <p class="mb-1"><strong>Fasting Blood Sugar:</strong> ${formatValue(assessment.fbs)}</p>
+                            <p class="mb-1"><strong>ECG Results:</strong> ${formatValue(assessment.restecg)}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6 class="text-primary"><i class="bi bi-droplet me-1"></i> Glucose</h6>
+                        <div class="ms-3">
+                            <p class="mb-1"><strong>Average Sugar:</strong> ${formatValue(assessment.glucose)}</p>
+                            <p class="mb-1"><strong>HbA1c Level:</strong> ${formatValue(assessment.HbA1c_level)}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button class="btn btn-outline-primary" onclick="viewResult(${assessment.id})">
+                            <i class="bi bi-printer me-1"></i> View Result
+                        </button>
+                        <button class="btn btn-outline-danger" onclick="deleteAssessment(${assessment.id})">
+                            <i class="bi bi-trash me-1"></i> Delete Assessment
+                        </button>
+                    </div>
+                `;
+                
+                detailDiv.innerHTML = detailsHtml;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                detailDiv.innerHTML = `
+                    <div class="text-center py-4 text-danger">
+                        <i class="bi bi-exclamation-triangle fs-1"></i>
+                        <p class="mt-3">Failed to load assessment details.</p>
+                    </div>
+                `;
+            });
+        }
+        
+        function formatValue(value) {
+            if (!value) return 'Not specified';
+            
+            // Many values from the form are stored as "code,description"
+            const parts = value.split(',');
+            return parts.length > 1 ? parts[1] : value;
+        }
+        
+        function deleteAssessment(id) {
+            if (confirm('Are you sure you want to delete this assessment?')) {
+                
+                fetch(`http://localhost:8000/admin/assessment/${id}`, {
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to delete assessment');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Assessment deleted successfully!');
+                    loadAssessments();
+                    document.getElementById('assessment-detail').innerHTML = `
+                        <div class="text-center py-4 text-muted">
+                            <i class="bi bi-info-circle fs-1"></i>
+                            <p class="mt-3">Select an assessment to view details</p>
+                        </div>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to delete assessment. Please try again.');
+                });
+            }
+        }
+
+        document.getElementById('refresh-btn').addEventListener('click', function() {
+            document.getElementById('assessment-list').innerHTML = `
+            <div class="d-flex justify-content-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            `;
+
+            setTimeout(() => {
+            loadAssessments();
+            }, 500); 
+        });
+
+        function viewResult(id) {
+            window.open(`result.html?id=${id}`, '_blank');
+        }
+
+    </script>
+</body>
+</html>

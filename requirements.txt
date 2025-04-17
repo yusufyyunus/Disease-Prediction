@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pandas
+joblib
+numpy
+python-dotenv
+smtplib
+email
+pydantic
